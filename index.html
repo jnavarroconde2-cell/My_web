@@ -1,105 +1,57 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Modo Barra / Modo Palito</title>
-  <style>
-    :root { color-scheme: dark; }
-    * { box-sizing: border-box; }
-    body {
-      margin: 0; min-height: 100vh; background: #000; color: #fff;
-      font-family: Arial, Helvetica, sans-serif; display: flex; align-items: center; justify-content: center;
-      padding: 18px;
-    }
-    .panel { width: min(900px, 100%); background: #000; }
-    .toolbar { display: flex; justify-content: flex-end; margin-bottom: 12px; }
-    button {
-      border: 0; border-radius: 8px; background: #1f77ff; color: white; font-weight: 700;
-      padding: 12px 16px; cursor: pointer; font-size: 14px;
-    }
-    button:hover { background: #0d5ac1; }
-    canvas { display: block; width: 100%; height: auto; background: #000; border-radius: 8px; }
-    .note { color: #aaa; font-size: 12px; text-align: center; margin-top: 8px; }
-  </style>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="theme-color" content="#0d1117">
+<title>Mi Proyecto - Animado</title>
+<style>
+:root{color-scheme:dark;--fondo:#0d1117;--panel:#161b22;--borde:#30363d;--verde:#00ff88;--texto:#f0f6fc}
+*{box-sizing:border-box}
+body{background:var(--fondo);color:var(--texto);font-family:Arial,Helvetica,sans-serif;text-align:center;margin:0;padding:clamp(14px,3vw,28px);min-height:100vh;animation:entrar 1.5s ease-out}
+@keyframes entrar{from{opacity:0;transform:translateY(-30px)}to{opacity:1;transform:translateY(0)}}
+h1{color:var(--verde);margin:8px 0 18px;animation:brillo 2s infinite alternate}
+@keyframes brillo{from{text-shadow:0 0 5px var(--verde)}to{text-shadow:0 0 20px var(--verde),0 0 30px var(--verde)}}
+.card{background:var(--panel);padding:16px;border-radius:12px;margin:18px auto;width:min(100%,600px);border:1px solid var(--borde);box-shadow:0 8px 24px rgba(0,0,0,.18)}
+.card p{margin:8px 0;line-height:1.5}#fecha{color:#9da7b3;font-size:.95rem}
+.grafico-contenedor{width:min(100%,760px);margin:20px auto 0;background:var(--panel);border:1px solid var(--borde);border-radius:15px;padding:10px;box-shadow:0 0 20px rgba(0,255,136,.18);animation:aparecer 2s ease-out .5s both}
+canvas{display:block;width:100%;height:auto;border-radius:10px;background:var(--panel)}
+@keyframes aparecer{from{opacity:0;transform:scale(.96)}to{opacity:1;transform:scale(1)}}
+@media(max-width:420px){h1{font-size:1.6rem}.card{padding:13px}.grafico-contenedor{padding:6px}}
+@media(prefers-reduced-motion:reduce){*,*::before,*::after{animation-duration:.01ms!important;animation-iteration-count:1!important;scroll-behavior:auto!important}}
+</style>
 </head>
 <body>
-  <main class="panel">
-    <div class="toolbar"><button id="toggle">A MODO PALITO</button></div>
-    <canvas id="chart" width="900" height="560" aria-label="Gráfico interactivo"></canvas>
-    <p class="note">Pulsa el botón para cambiar entre barras y palitos. Los valores se generan aleatoriamente.</p>
-  </main>
-  <script>
-    // Versión HTML/JavaScript del gráfico original en Python.
-    const N = 10;
-    let values = makeValues();
-    let mode = 'bar';
-    const canvas = document.getElementById('chart');
-    const ctx = canvas.getContext('2d');
-    const toggle = document.getElementById('toggle');
-
-    function makeValues() {
-      return Array.from({ length: N }, () => Math.floor(Math.random() * 9) + 1);
-    }
-
-    function draw() {
-      const w = canvas.width, h = canvas.height;
-      ctx.clearRect(0, 0, w, h);
-      ctx.fillStyle = '#000'; ctx.fillRect(0, 0, w, h);
-
-      const left = 68, right = 28, top = 72, bottom = 66;
-      const plotW = w - left - right, plotH = h - top - bottom;
-      const maxY = mode === 'bar' ? 10 : 15;
-      const blue = '#1f77ff';
-
-      // Título
-      ctx.fillStyle = '#fff'; ctx.font = 'bold 23px Arial'; ctx.textAlign = 'center';
-      ctx.fillText(`Modo: ${mode} | val=[${values.join(', ')}]`, w / 2, 34);
-
-      // Ejes y cuadrícula
-      ctx.lineWidth = 1; ctx.strokeStyle = '#383838'; ctx.fillStyle = '#ddd';
-      ctx.font = '14px Arial'; ctx.textAlign = 'right';
-      for (let t = 0; t <= maxY; t += 5) {
-        const y = top + plotH - (t / maxY) * plotH;
-        ctx.beginPath(); ctx.moveTo(left, y); ctx.lineTo(w - right, y); ctx.stroke();
-        ctx.fillText(String(t), left - 12, y + 5);
-      }
-      ctx.strokeStyle = '#aaa';
-      ctx.beginPath(); ctx.moveTo(left, top); ctx.lineTo(left, top + plotH); ctx.lineTo(w - right, top + plotH); ctx.stroke();
-
-      const slot = plotW / N;
-      values.forEach((v, i) => {
-        const xCenter = left + slot * (i + 0.5);
-        const y = top + plotH - (v / maxY) * plotH;
-        if (mode === 'bar') {
-          const barW = slot * 0.68;
-          ctx.fillStyle = blue;
-          ctx.fillRect(xCenter - barW / 2, y, barW, top + plotH - y);
-        } else {
-          // Equivalente visual al errorbar de Matplotlib: punto y barra de error ±v.
-          const low = Math.max(0, v - v);
-          const high = Math.min(maxY, v + v);
-          const yLow = top + plotH - (low / maxY) * plotH;
-          const yHigh = top + plotH - (high / maxY) * plotH;
-          ctx.strokeStyle = blue; ctx.lineWidth = 3;
-          ctx.beginPath(); ctx.moveTo(xCenter, yHigh); ctx.lineTo(xCenter, yLow); ctx.stroke();
-          ctx.beginPath(); ctx.moveTo(xCenter - 7, yHigh); ctx.lineTo(xCenter + 7, yHigh);
-          ctx.moveTo(xCenter - 7, yLow); ctx.lineTo(xCenter + 7, yLow); ctx.stroke();
-          ctx.fillStyle = blue; ctx.beginPath(); ctx.arc(xCenter, y, 5, 0, Math.PI * 2); ctx.fill();
-        }
-        ctx.fillStyle = '#ddd'; ctx.font = '13px Arial'; ctx.textAlign = 'center';
-        ctx.fillText(String(i), xCenter, top + plotH + 24);
-      });
-    }
-
-    toggle.addEventListener('click', () => {
-      mode = mode === 'bar' ? 'palito' : 'bar';
-      toggle.textContent = mode === 'bar' ? 'A MODO PALITO' : 'A MODO BARRA';
-      values = makeValues();
-      draw();
-    });
-
-    draw();
-  </script>
+<h1>MI PROYECTO 🔥</h1>
+<div class="card"><p>Aprendiendo en 6 meses - Nivel Pro</p><p id="fecha" aria-live="polite"></p></div>
+<div class="grafico-contenedor"><canvas id="graf" width="700" height="400" role="img" aria-label="Gráfico animado de barras de seis valores"></canvas></div>
+<script>
+document.getElementById("fecha").textContent="Hoy: "+new Date().toLocaleDateString();
+const canvas=document.getElementById("graf"),ctx=canvas.getContext("2d");
+const valores=[9,8,2,4,8,3],colores=["#00ff88","#00d4ff","#ff0055","#ffaa00","#aa00ff","#ffdd00"];
+const anchoBase=700,altoBase=400;
+let progreso=0,animacionIniciada=false;
+function dibujar(){
+ const ancho=canvas.clientWidth||anchoBase, dpr=Math.max(1,window.devicePixelRatio||1);
+ canvas.width=Math.round(ancho*dpr);canvas.height=Math.round(ancho*altoBase/anchoBase*dpr);
+ const escala=ancho/anchoBase;ctx.setTransform(dpr*escala,0,0,dpr*escala,0,0);ctx.clearRect(0,0,anchoBase,altoBase);
+ ctx.fillStyle="#f0f6fc";ctx.font="bold 18px Arial";ctx.fillText("Gráfico Animado - A Modo Barra",20,32);
+ const baseY=340,anchoBarra=60,espacio=100;
+ ctx.strokeStyle="#30363d";ctx.lineWidth=1;
+ for(let nivel=1;nivel<=10;nivel+=2){const y=baseY-nivel*25;ctx.beginPath();ctx.moveTo(35,y);ctx.lineTo(665,y);ctx.stroke()}
+ valores.forEach((valor,i)=>{
+  const x=50+i*espacio,altoFinal=valor*25,altoAnimado=altoFinal*progreso,y=baseY-altoAnimado;
+  ctx.fillStyle=colores[i];ctx.fillRect(x,y,anchoBarra,altoAnimado);
+  ctx.fillStyle="#f0f6fc";ctx.font="bold 16px Arial";ctx.textAlign="center";ctx.fillText(String(valor),x+anchoBarra/2,baseY+25);
+  if(progreso>=1){ctx.fillStyle=colores[i];ctx.font="12px Arial";ctx.fillText("Valor "+(i+1),x+anchoBarra/2,baseY+45)}
+ });
+ ctx.textAlign="left";ctx.fillStyle="#9da7b3";ctx.font="12px Arial";ctx.fillText("Valores",20,385);
+}
+function animar(){progreso=Math.min(progreso+.02,1);dibujar();if(progreso<1)requestAnimationFrame(animar)}
+function iniciarAnimacion(){if(animacionIniciada)return;animacionIniciada=true;animar()}
+if(canvas.clientWidth>0)iniciarAnimacion();else window.addEventListener("load",iniciarAnimacion,{once:true});
+let resizePendiente=false;
+window.addEventListener("resize",()=>{if(resizePendiente)return;resizePendiente=true;requestAnimationFrame(()=>{resizePendiente=false;dibujar()})});
+</script>
 </body>
 </html>

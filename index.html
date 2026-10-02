@@ -1,57 +1,48 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<meta name="theme-color" content="#0d1117">
-<title>Mi Proyecto - Animado</title>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="theme-color" content="#0b0e13">
+<title>MI PROYECTO 🔥</title>
 <style>
-:root{color-scheme:dark;--fondo:#0d1117;--panel:#161b22;--borde:#30363d;--verde:#00ff88;--texto:#f0f6fc}
-*{box-sizing:border-box}
-body{background:var(--fondo);color:var(--texto);font-family:Arial,Helvetica,sans-serif;text-align:center;margin:0;padding:clamp(14px,3vw,28px);min-height:100vh;animation:entrar 1.5s ease-out}
-@keyframes entrar{from{opacity:0;transform:translateY(-30px)}to{opacity:1;transform:translateY(0)}}
-h1{color:var(--verde);margin:8px 0 18px;animation:brillo 2s infinite alternate}
-@keyframes brillo{from{text-shadow:0 0 5px var(--verde)}to{text-shadow:0 0 20px var(--verde),0 0 30px var(--verde)}}
-.card{background:var(--panel);padding:16px;border-radius:12px;margin:18px auto;width:min(100%,600px);border:1px solid var(--borde);box-shadow:0 8px 24px rgba(0,0,0,.18)}
-.card p{margin:8px 0;line-height:1.5}#fecha{color:#9da7b3;font-size:.95rem}
-.grafico-contenedor{width:min(100%,760px);margin:20px auto 0;background:var(--panel);border:1px solid var(--borde);border-radius:15px;padding:10px;box-shadow:0 0 20px rgba(0,255,136,.18);animation:aparecer 2s ease-out .5s both}
-canvas{display:block;width:100%;height:auto;border-radius:10px;background:var(--panel)}
-@keyframes aparecer{from{opacity:0;transform:scale(.96)}to{opacity:1;transform:scale(1)}}
-@media(max-width:420px){h1{font-size:1.6rem}.card{padding:13px}.grafico-contenedor{padding:6px}}
-@media(prefers-reduced-motion:reduce){*,*::before,*::after{animation-duration:.01ms!important;animation-iteration-count:1!important;scroll-behavior:auto!important}}
-</style>
-</head>
-<body>
-<h1>MI PROYECTO 🔥</h1>
-<div class="card"><p>Aprendiendo en 6 meses - Nivel Pro</p><p id="fecha" aria-live="polite"></p></div>
-<div class="grafico-contenedor"><canvas id="graf" width="700" height="400" role="img" aria-label="Gráfico animado de barras de seis valores"></canvas></div>
+:root{--bg:#0b0e13;--panel:#151a21;--border:#2a323c;--text:#edf2f7;--muted:#8c98a8;--green:#00f59b;--cyan:#00d5ff;--pink:#ff1760;--orange:#ffad00;--purple:#b000ff;--yellow:#ffe000}
+*{box-sizing:border-box}body{margin:0;background:radial-gradient(ellipse at top,#10241f,var(--bg) 45%);color:var(--text);font-family:system-ui,Arial,sans-serif}.container{max-width:1120px;margin:auto;padding:22px 16px 40px}header{text-align:center;padding:15px 0 24px}h1{margin:0;color:var(--green);font-size:clamp(2rem,6vw,3.2rem);text-shadow:0 0 12px #00f59b99,0 0 30px #00f59b66}header p,.muted{color:var(--muted)}.panel,.stat{background:linear-gradient(145deg,#171c23,#13181f);border:1px solid var(--border);border-radius:20px;box-shadow:0 12px 30px #0003}.hero{display:grid;grid-template-columns:1fr 1fr;gap:14px}.hero-info,.quick{padding:22px;text-align:center;display:flex;flex-direction:column;justify-content:center}.hero-info strong{font-size:1.25rem}.date{margin-top:12px;color:var(--muted)}button,input,select{font:inherit}button{border:1px solid #34404d;background:#202832;color:var(--text);border-radius:10px;padding:10px 12px;cursor:pointer}button:hover{border-color:var(--green)}button.primary{background:var(--green);color:#062116;font-weight:700}.actions{display:flex;gap:8px;justify-content:center;flex-wrap:wrap;margin-top:12px}.stats{display:grid;grid-template-columns:repeat(4,1fr);gap:12px;margin:16px 0}.stat{padding:17px}.stat small{color:var(--muted)}.num{font-size:clamp(1.5rem,3vw,2rem);font-weight:750;margin-top:6px}.accent{height:3px;width:42px;background:var(--green);margin-top:10px;border-radius:8px}.charts{display:grid;grid-template-columns:1fr 1fr;gap:14px}.chart-panel{padding:18px;min-width:0}.wide{grid-column:1/-1}.head{display:flex;align-items:center;justify-content:space-between;gap:8px;flex-wrap:wrap;margin-bottom:12px}h2{font-size:1.08rem;margin:0}.chip{font-size:.75rem;color:var(--muted);border:1px solid var(--border);border-radius:30px;padding:5px 9px}.chart-wrap{height:250px}canvas{width:100%;height:100%;display:block}.legend{display:flex;gap:10px;flex-wrap:wrap;color:var(--muted);font-size:.8rem;margin-top:8px}.dot{display:inline-block;width:8px;height:8px;border-radius:3px;margin-right:5px}.note{color:var(--muted);font-size:.8rem;margin-top:10px}.controls,.activity{padding:20px;margin-top:15px}.formgrid{display:grid;grid-template-columns:1fr 1fr 1fr auto;gap:9px;align-items:end}.field label{display:block;font-size:.8rem;color:var(--muted);margin-bottom:5px}input,select{width:100%;min-width:0;background:#0d1218;color:var(--text);border:1px solid #34404d;border-radius:10px;padding:11px}.tablewrap{overflow-x:auto;margin-top:15px}table{width:100%;min-width:400px;border-collapse:collapse;font-size:.9rem}th,td{padding:11px 8px;text-align:left;border-bottom:1px solid #27303a}th{color:var(--muted)}td:last-child{text-align:right}.delete{color:#ff9cb4;padding:5px 8px}.activity-list{display:grid;grid-template-columns:repeat(3,1fr);gap:10px}.activity-item{padding:12px;border:1px solid #27303a;border-radius:12px;background:#10151b}.activity-item small{display:block;color:var(--muted);margin-top:5px}footer{text-align:center;color:#697585;font-size:.8rem;padding:25px 0 0}@keyframes rise{from{transform:scaleY(.05);opacity:.4}to{transform:scaleY(1);opacity:1}}@media(max-width:720px){.container{padding:14px 11px 30px}.hero,.charts{grid-template-columns:1fr}.wide{grid-column:auto}.stats{grid-template-columns:1fr 1fr}.chart-panel{padding:14px}.chart-wrap{height:225px}.formgrid{grid-template-columns:1fr 1fr}.field:first-child{grid-column:1/-1}.activity-list{grid-template-columns:1fr}}@media(prefers-reduced-motion:reduce){*{animation:none!important;scroll-behavior:auto!important}}
+</style></head>
+<body><main class="container">
+<header><h1>MI PROYECTO 🔥</h1><p>Panel de estadísticas · Datos interactivos</p></header>
+<section class="hero">
+<div class="panel hero-info"><strong>Aprendiendo en 6 meses - Nivel Pro</strong><div class="date" id="today"></div></div>
+<div class="panel quick"><div class="head"><h2>Acciones rápidas</h2><span class="chip">Dashboard</span></div><div class="actions"><button class="primary" id="demo">Cargar datos demo</button><button id="export">Exportar CSV</button><button id="reset">Restablecer</button></div></div>
+</section>
+<section class="stats">
+<div class="stat"><small>Total de valores</small><div class="num" id="total">34</div><div class="accent"></div></div>
+<div class="stat"><small>Promedio</small><div class="num" id="avg">5.67</div><div class="accent" style="background:var(--cyan)"></div></div>
+<div class="stat"><small>Valor máximo</small><div class="num" id="max">9</div><div class="accent" style="background:var(--purple)"></div></div>
+<div class="stat"><small>Valor mínimo</small><div class="num" id="min">2</div><div class="accent" style="background:var(--orange)"></div></div>
+</section>
+<section class="charts">
+<div class="panel chart-panel"><div class="head"><h2>Gráfico animado · Barras</h2><span class="chip">Principal</span></div><div class="chart-wrap"><canvas id="mainChart"></canvas></div><div class="legend" id="legend"></div><div class="note">Toca una barra para ver su valor exacto.</div></div>
+<div class="panel chart-panel"><div class="head"><h2>Comparación de resultados</h2><span class="chip">Comparativo</span></div><div class="chart-wrap"><canvas id="compareChart"></canvas></div><div class="legend"><span><i class="dot" style="background:var(--cyan)"></i>Serie actual</span><span><i class="dot" style="background:var(--purple)"></i>Referencia</span></div></div>
+<div class="panel chart-panel wide"><div class="head"><h2>Actividad semanal</h2><span class="chip">7 días</span></div><div class="chart-wrap"><canvas id="weekChart"></canvas></div><div class="legend"><span><i class="dot" style="background:var(--green)"></i>Actividad diaria</span></div></div>
+</section>
+<section class="panel controls"><div class="head"><h2>Administrar datos</h2><span class="chip">Editable</span></div><p class="note">Agrega tus propios datos y los gráficos se actualizarán automáticamente.</p>
+<form id="form" class="formgrid"><div class="field"><label for="label">Nombre de la barra</label><input id="label" maxlength="22" placeholder="Ej. Proyecto 7" required></div><div class="field"><label for="value">Valor (0–1000)</label><input id="value" type="number" min="0" max="1000" step="any" placeholder="Ej. 12" required></div><div class="field"><label for="color">Color</label><select id="color"><option value="#00f59b">Verde neón</option><option value="#00d5ff">Cian</option><option value="#ff1760">Rosa</option><option value="#ffad00">Naranja</option><option value="#b000ff">Morado</option><option value="#ffe000">Amarillo</option></select></div><button class="primary">＋ Agregar barra</button></form>
+<div class="tablewrap"><table><thead><tr><th>Nombre</th><th>Valor</th><th>Color</th><th>Acción</th></tr></thead><tbody id="rows"></tbody></table></div></section>
+<section class="panel activity"><div class="head"><h2>Actividad reciente</h2><span class="chip" id="eventCount">0 eventos</span></div><div class="activity-list" id="events"></div></section>
+<footer>MI PROYECTO 🔥 · HTML, CSS y JavaScript · Compatible con GitHub Pages</footer>
+</main>
 <script>
-document.getElementById("fecha").textContent="Hoy: "+new Date().toLocaleDateString();
-const canvas=document.getElementById("graf"),ctx=canvas.getContext("2d");
-const valores=[9,8,2,4,8,3],colores=["#00ff88","#00d4ff","#ff0055","#ffaa00","#aa00ff","#ffdd00"];
-const anchoBase=700,altoBase=400;
-let progreso=0,animacionIniciada=false;
-function dibujar(){
- const ancho=canvas.clientWidth||anchoBase, dpr=Math.max(1,window.devicePixelRatio||1);
- canvas.width=Math.round(ancho*dpr);canvas.height=Math.round(ancho*altoBase/anchoBase*dpr);
- const escala=ancho/anchoBase;ctx.setTransform(dpr*escala,0,0,dpr*escala,0,0);ctx.clearRect(0,0,anchoBase,altoBase);
- ctx.fillStyle="#f0f6fc";ctx.font="bold 18px Arial";ctx.fillText("Gráfico Animado - A Modo Barra",20,32);
- const baseY=340,anchoBarra=60,espacio=100;
- ctx.strokeStyle="#30363d";ctx.lineWidth=1;
- for(let nivel=1;nivel<=10;nivel+=2){const y=baseY-nivel*25;ctx.beginPath();ctx.moveTo(35,y);ctx.lineTo(665,y);ctx.stroke()}
- valores.forEach((valor,i)=>{
-  const x=50+i*espacio,altoFinal=valor*25,altoAnimado=altoFinal*progreso,y=baseY-altoAnimado;
-  ctx.fillStyle=colores[i];ctx.fillRect(x,y,anchoBarra,altoAnimado);
-  ctx.fillStyle="#f0f6fc";ctx.font="bold 16px Arial";ctx.textAlign="center";ctx.fillText(String(valor),x+anchoBarra/2,baseY+25);
-  if(progreso>=1){ctx.fillStyle=colores[i];ctx.font="12px Arial";ctx.fillText("Valor "+(i+1),x+anchoBarra/2,baseY+45)}
- });
- ctx.textAlign="left";ctx.fillStyle="#9da7b3";ctx.font="12px Arial";ctx.fillText("Valores",20,385);
-}
-function animar(){progreso=Math.min(progreso+.02,1);dibujar();if(progreso<1)requestAnimationFrame(animar)}
-function iniciarAnimacion(){if(animacionIniciada)return;animacionIniciada=true;animar()}
-if(canvas.clientWidth>0)iniciarAnimacion();else window.addEventListener("load",iniciarAnimacion,{once:true});
-let resizePendiente=false;
-window.addEventListener("resize",()=>{if(resizePendiente)return;resizePendiente=true;requestAnimationFrame(()=>{resizePendiente=false;dibujar()})});
-</script>
-</body>
-</html>
+(()=>{const original=[['Valor 1',9,'#00f59b'],['Valor 2',8,'#00d5ff'],['Valor 3',2,'#ff1760'],['Valor 4',4,'#ffad00'],['Valor 5',8,'#b000ff'],['Valor 6',3,'#ffe000']];let data=original.map(x=>({label:x[0],value:x[1],color:x[2]}));let events=[{title:'Panel iniciado',detail:'Gráficos listos para usar.'}];const $=id=>document.getElementById(id);const fmt=n=>Number.isInteger(n)?''+n:Number(n.toFixed(2)).toString();const esc=s=>String(s).replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));$('today').textContent='Hoy: '+new Date().toLocaleDateString('es-PE');
+function activity(title,detail){events.unshift({title,detail});events=events.slice(0,6);renderEvents()}
+function canvasSetup(c){let r=c.getBoundingClientRect(),d=Math.min(devicePixelRatio||1,2);c.width=Math.max(1,Math.round(r.width*d));c.height=Math.max(1,Math.round(r.height*d));let x=c.getContext('2d');x.setTransform(d,0,0,d,0,0);return{x,w:r.width,h:r.height}}
+function draw(id,items){let {x,w,h}=canvasSetup($(id));x.clearRect(0,0,w,h);let p={t:22,r:12,b:34,l:29},pw=w-p.l-p.r,ph=h-p.t-p.b,m=Math.max(1,...items.map(a=>a.value))*1.18;x.font='11px system-ui';x.textAlign='right';x.textBaseline='middle';x.strokeStyle='#2a323b';x.fillStyle='#8995a4';for(let i=0;i<=4;i++){let y=p.t+ph-ph*i/4;x.beginPath();x.moveTo(p.l,y);x.lineTo(w-p.r,y);x.stroke();x.fillText(fmt(m*i/4),p.l-5,y)}if(!items.length){x.textAlign='center';x.fillText('Agrega datos para ver el gráfico',w/2,h/2);return}let slot=pw/items.length,bw=Math.max(5,Math.min(48,slot*.58));items.forEach((a,i)=>{let bx=p.l+i*slot+(slot-bw)/2,bh=a.value/m*ph,by=p.t+ph-bh;x.save();x.shadowColor=a.color;x.shadowBlur=8;x.fillStyle=a.color;x.fillRect(bx,by,bw,bh);x.restore();x.fillStyle='#edf2f7';x.textAlign='center';x.textBaseline='bottom';x.font='bold 11px system-ui';x.fillText(fmt(a.value),bx+bw/2,Math.max(12,by-4));x.fillStyle='#a1acba';x.font='10px system-ui';x.textBaseline='top';let label=a.label.length>9?a.label.slice(0,8)+'…':a.label;x.fillText(label,bx+bw/2,p.t+ph+8)})}
+function renderEvents(){$('eventCount').textContent=events.length+' eventos';$('events').innerHTML=events.slice(0,3).map(a=>`<div class="activity-item"><strong>${esc(a.title)}</strong><small>${esc(a.detail)}</small></div>`).join('')}
+function render(){let vals=data.map(d=>d.value),sum=vals.reduce((a,b)=>a+b,0);$('total').textContent=fmt(sum);$('avg').textContent=fmt(vals.length?sum/vals.length:0);$('max').textContent=vals.length?fmt(Math.max(...vals)):'—';$('min').textContent=vals.length?fmt(Math.min(...vals)):'—';$('legend').innerHTML=data.map(d=>`<span><i class="dot" style="background:${d.color}"></i>${esc(d.label)}</span>`).join('')||'Sin datos';$('rows').innerHTML=data.map((d,i)=>`<tr><td><i class="dot" style="background:${d.color}"></i>${esc(d.label)}</td><td>${fmt(d.value)}</td><td>${d.color.toUpperCase()}</td><td><button class="delete" type="button" data-del="${i}">Eliminar</button></td></tr>`).join('')||'<tr><td colspan="4">No hay datos. Agrega una barra.</td></tr>';draw('mainChart',data);draw('compareChart',data.map((d,i)=>({...d,value:d.value*.72,color:i%2===0?'#00d5ff':'#b000ff'})));let days=['Lun','Mar','Mié','Jue','Vie','Sáb','Dom'];draw('weekChart',days.map((label,i)=>({label,value:Math.max(1,Math.round((data[i%Math.max(data.length,1)]||{value:2}).value*(.55+(i%4)*.2)),color:'#00f59b'})))}
+$('form').addEventListener('submit',e=>{e.preventDefault();let label=$('label').value.trim(),value=Number($('value').value);if(!label||$('value').value===''||!Number.isFinite(value)||value<0||value>1000){alert('Escribe un nombre y un valor entre 0 y 1000.');return}if(data.length>=18){alert('Máximo 18 barras para mantener los gráficos legibles.');return}data.push({label,value,color:$('color').value});$('label').value='';$('value').value='';activity('Barra agregada',label+' · valor '+fmt(value));render()});
+$('rows').addEventListener('click',e=>{let b=e.target.closest('[data-del]');if(!b)return;let d=data.splice(Number(b.dataset.del),1)[0];activity('Barra eliminada',d.label+' fue eliminada.');render()});
+$('reset').addEventListener('click',()=>{if(!confirm('¿Restablecer los datos originales?'))return;data=original.map(x=>({label:x[0],value:x[1],color:x[2]}));activity('Datos restablecidos','Se recuperaron las 6 barras originales.');render()});
+$('demo').addEventListener('click',()=>{data=[['Lunes',5,'#00f59b'],['Martes',8,'#00d5ff'],['Miércoles',6,'#ff1760'],['Jueves',10,'#ffad00'],['Viernes',7,'#b000ff'],['Sábado',9,'#ffe000'],['Domingo',4,'#7dff72']].map(x=>({label:x[0],value:x[1],color:x[2]}));activity('Datos demo cargados','Ejemplo semanal de 7 días.');render()});
+$('export').addEventListener('click',()=>{let csv=[['Nombre','Valor','Color'],...data.map(d=>[d.label,d.value,d.color])].map(r=>r.map(v=>'"'+String(v).replace(/"/g,'""')+'"').join(',')).join('\r\n');let blob=new Blob(['\ufeff'+csv],{type:'text/csv;charset=utf-8'}),url=URL.createObjectURL(blob),a=document.createElement('a');a.href=url;a.download='datos-mi-proyecto.csv';a.click();URL.revokeObjectURL(url);activity('Datos exportados','Se generó un archivo CSV.')});
+$('mainChart').addEventListener('click',e=>{let r=$('mainChart').getBoundingClientRect(),x=e.clientX-r.left,slot=(r.width-41)/Math.max(data.length,1),i=Math.floor((x-29)/slot);if(i>=0&&i<data.length)alert(data[i].label+': '+fmt(data[i].value))});
+let timer;window.addEventListener('resize',()=>{clearTimeout(timer);timer=setTimeout(render,120)});render();
+})();
+</script></body></html>
